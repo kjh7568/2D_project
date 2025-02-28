@@ -1,0 +1,14 @@
+{
+  "FireBall": {
+    "skillCoolTime": 3.0,
+    "skillMovementSpeed": 6.0,
+    "skillDuration": 3.0,
+    "skillCoefficient": 0.0
+  },
+  "FlameExplosionEffect": {
+    "skillCoolTime": 0.0,
+    "skillMovementSpeed": 0.0,
+    "skillDuration": 0.5,
+    "skillCoefficient": 0.3
+  }
+}
