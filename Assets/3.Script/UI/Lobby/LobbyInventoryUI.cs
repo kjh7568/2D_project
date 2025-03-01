@@ -20,6 +20,9 @@ public class LobbyInventoryUI : MonoBehaviour
     [SerializeField] private Button shatterButton;
 
     private Equipment selectedItem = new WeaponContainer();
+
+    private int index;
+
     private void OnEnable()
     {
         ManaStoneFragment.text = $"마석 조각: {EquipmentManager.instance.manaStoneFragment}개";
@@ -57,6 +60,8 @@ public class LobbyInventoryUI : MonoBehaviour
     }
     public void SelectEquipment(int idx)
     {
+        index = idx;
+
         try
         {
             selectedItem = EquipmentManager.instance.inventory[idx];
@@ -174,6 +179,22 @@ public class LobbyInventoryUI : MonoBehaviour
     }
     public void ShatterButton()
     {
+        switch (selectedItem.rarity)
+        {
+            case 1:
+                EquipmentManager.instance.manaStoneFragment += 5;
+                break;
 
+            case 2:
+                EquipmentManager.instance.manaStoneFragment += 10;
+                break;
+
+            case 3:
+                EquipmentManager.instance.manaStoneFragment += 20;
+                break;
+
+        }
+
+        EquipmentManager.instance.inventory.RemoveAt(index);
     }
 }
