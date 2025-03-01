@@ -155,9 +155,9 @@ public class accuracy : PassiveInterface
     {
         PlayerState playerState = GameManager.GM.playerState;
 
-        playerState.criticalChance += 0.05f;
+        playerState.criticalChance += 5f;
 
-        Debug.Log($"치명타 확률: {playerState.criticalChance }");
+        Debug.Log($"치명타 확률: {playerState.criticalChance}");
     }
 }
 public class focus : PassiveInterface

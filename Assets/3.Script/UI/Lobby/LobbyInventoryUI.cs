@@ -19,6 +19,8 @@ public class LobbyInventoryUI : MonoBehaviour
     [SerializeField] private Button equipButton;
     [SerializeField] private Button shatterButton;
 
+    [SerializeField] private Sprite nullImage;
+
     private Equipment selectedItem = new WeaponContainer();
 
     private int index;
@@ -43,7 +45,7 @@ public class LobbyInventoryUI : MonoBehaviour
         List<Equipment> inventory = EquipmentManager.instance.inventory;
         for (int i = 0; i < inventory.Count; i++)
         {
-            if(itemButtons[i].TryGetComponent(out Image image))
+            if (itemButtons[i].TryGetComponent(out Image image))
             {
                 image.sprite = inventory[i].itemImage;
             }
@@ -85,11 +87,11 @@ public class LobbyInventoryUI : MonoBehaviour
 
     private void Update()
     {
-        if(selectedItem == EquipmentManager.instance.EquippedWeapon)
+        if (selectedItem == EquipmentManager.instance.EquippedWeapon)
         {
             equipButton.interactable = false;
         }
-        else if(selectedItem == EquipmentManager.instance.EquippedArmor)
+        else if (selectedItem == EquipmentManager.instance.EquippedArmor)
         {
             equipButton.interactable = false;
         }
@@ -163,7 +165,7 @@ public class LobbyInventoryUI : MonoBehaviour
         }
     }
     public void EquipButton()
-    {   
+    {
         if (selectedItem.equipmentType == 1)
         {
             EquipmentManager.instance.EquippedWeapon = (WeaponContainer)selectedItem;
@@ -179,6 +181,16 @@ public class LobbyInventoryUI : MonoBehaviour
     }
     public void ShatterButton()
     {
+        if (selectedItem == EquipmentManager.instance.EquippedWeapon || 
+            selectedItem == EquipmentManager.instance.EquippedArmor ||
+            selectedItem == EquipmentManager.instance.EquippedBoots)
+        {
+            return;
+        }
+
+
+        List<Equipment> inventory = EquipmentManager.instance.inventory;
+
         switch (selectedItem.rarity)
         {
             case 1:
@@ -195,6 +207,32 @@ public class LobbyInventoryUI : MonoBehaviour
 
         }
 
-        EquipmentManager.instance.inventory.RemoveAt(index);
+        inventory.RemoveAt(index);
+        int i = 0;
+        for (; i < inventory.Count; i++)
+        {
+            if (itemButtons[i].TryGetComponent(out Image image))
+            {
+                image.sprite = inventory[i].itemImage;
+            }
+        }
+
+        for (; i < 30; i++)
+        {
+            if (itemButtons[i].TryGetComponent(out Image image))
+            {
+                image.sprite = nullImage;
+            }
+        }
+
+        PreviewImage.gameObject.SetActive(false);
+        itemName.gameObject.SetActive(false);
+        itemRarity.gameObject.SetActive(false);
+        itemStats.gameObject.SetActive(false);
+
+        ManaStoneFragment.text = $"마석 조각: {EquipmentManager.instance.manaStoneFragment}개";
+
+        equipButton.interactable = false;
+        shatterButton.interactable = false;
     }
 }

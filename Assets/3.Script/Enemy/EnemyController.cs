@@ -53,7 +53,8 @@ public class EnemyController : MonoBehaviour
         {
             if (!isAttack)
             {
-                playerState.setHp(-enemyState.damage);
+                Debug.Log($"몬스터에게 피격! {enemyState.damage - GameManager.GM.playerState.defense}");
+                playerState.setHp(-(enemyState.damage - GameManager.GM.playerState.defense));
                 isAttack = true;
                 StartCoroutine(AttackCooldown_Co());
             }

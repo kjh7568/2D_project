@@ -35,9 +35,21 @@ public class FlameExplosionEffect : MonoBehaviour, SkillInfoInterface
     {
         if (collision.CompareTag("Enemy"))
         {
+            PlayerState playerState = GameManager.GM.playerState;
+
             if (collision.TryGetComponent(out EnemyState ES))
             {
-                ES.SetHp(-skillCoefficient * GameManager.GM.playerState.spellPower);
+                int rate = Random.Range(0, 100);
+                if (rate < playerState.criticalChance)
+                {
+                    Debug.Log($"기본 피해량 {-skillCoefficient * playerState.spellPower}");
+                    Debug.Log($"치명타 발생! {(skillCoefficient * playerState.spellPower) * playerState.damageTakenAmount}");
+                    ES.SetHp((-skillCoefficient * playerState.spellPower) * playerState.damageTakenAmount);
+                }
+                else
+                {
+                    ES.SetHp(-skillCoefficient * playerState.spellPower);
+                }
             }
         }
     }
