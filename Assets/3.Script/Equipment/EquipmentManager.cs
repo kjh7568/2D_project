@@ -28,8 +28,6 @@ namespace EquipmentNameSpace
         public float movementSpeedPercent { get; set; }
 
     }
-
-
 }
 
 public class EquipmentManager : MonoBehaviour
