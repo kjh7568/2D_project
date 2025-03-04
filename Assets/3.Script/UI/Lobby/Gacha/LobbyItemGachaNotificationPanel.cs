@@ -41,6 +41,8 @@ public class LobbyItemGachaNotificationPanel : MonoBehaviour
 
     private int[] randomOption;
 
+    private int currOptionNum;
+
     private Equipment newItem;
 
     private void Awake()
@@ -219,6 +221,7 @@ public class LobbyItemGachaNotificationPanel : MonoBehaviour
         for (int i = 0; i < newItem.rarity; i++)
         {
             wandOptionPool[randomOption[i]](newItem);
+            newItem.optionPool[i] = currOptionNum;
         }
 
         return (WeaponContainer)newItem;
@@ -267,6 +270,7 @@ public class LobbyItemGachaNotificationPanel : MonoBehaviour
         for (int i = 0; i < newItem.rarity; i++)
         {
             armorOptionPool[randomOption[i]](newItem);
+            newItem.optionPool[i] = currOptionNum;
         }
 
         return (ArmorContainer)newItem;
@@ -319,6 +323,7 @@ public class LobbyItemGachaNotificationPanel : MonoBehaviour
             if (rate > 20)
             {
                 bootsOptionPool[randomOption[i]](newItem);
+                newItem.optionPool[i] = currOptionNum;
             }
         }
 
@@ -327,11 +332,13 @@ public class LobbyItemGachaNotificationPanel : MonoBehaviour
 
 
 
-    public void CriticalChanceOption(Equipment newItem)
+    public void CriticalChanceOption(Equipment newIteml)
     {
         //일반 등급이면 1~10
         //매직 등급이면 11~18
         //레어 등급이면 19~24
+
+        currOptionNum = 0;
 
         float value = 0;
 
@@ -359,6 +366,8 @@ public class LobbyItemGachaNotificationPanel : MonoBehaviour
         //매직 등급이면 6~9
         //레어 등급이면 10~12
 
+        currOptionNum = 1;
+
         float value = 0;
 
         if (newItem.rarity == 1)
@@ -384,6 +393,8 @@ public class LobbyItemGachaNotificationPanel : MonoBehaviour
         //일반 등급이면 10~25
         //매직 등급이면 26~35
         //레어 등급이면 36~40
+
+        currOptionNum = 2;
 
         float value = 0;
 
@@ -411,6 +422,8 @@ public class LobbyItemGachaNotificationPanel : MonoBehaviour
         //매직 등급이면 6~8
         //레어 등급이면 9~10
 
+        currOptionNum = 3;
+
         float value = 0;
 
         if (newItem.rarity == 1)
@@ -436,6 +449,8 @@ public class LobbyItemGachaNotificationPanel : MonoBehaviour
         //일반 등급이면 1~5
         //매직 등급이면 6~9
         //레어 등급이면 10~15
+
+        currOptionNum = 4;
 
         float value = 0;
 
@@ -463,6 +478,8 @@ public class LobbyItemGachaNotificationPanel : MonoBehaviour
         //매직 등급이면 8~13
         //레어 등급이면 14~18
 
+        currOptionNum = 5;
+
         float value = 0;
 
         if (newItem.rarity == 1)
@@ -488,6 +505,8 @@ public class LobbyItemGachaNotificationPanel : MonoBehaviour
         //일반 등급이면 10~14
         //매직 등급이면 15~19
         //레어 등급이면 20~24
+
+        currOptionNum = 6;
 
         float value = 0;
 
@@ -515,6 +534,8 @@ public class LobbyItemGachaNotificationPanel : MonoBehaviour
         //매직 등급이면 9~11
         //레어 등급이면 10~13
 
+        currOptionNum = 7;
+
         float value = 0;
 
         if (newItem.rarity == 1)
@@ -541,6 +562,8 @@ public class LobbyItemGachaNotificationPanel : MonoBehaviour
         //매직 등급이면 21~25
         //레어 등급이면 26~28
 
+        currOptionNum = 8;
+
         float value = 0;
 
         if (newItem.rarity == 1)
@@ -566,6 +589,8 @@ public class LobbyItemGachaNotificationPanel : MonoBehaviour
         //일반 등급이면 10~13
         //매직 등급이면 14~16
         //레어 등급이면 17~20
+
+        currOptionNum = 9;
 
         float value = 0;
 

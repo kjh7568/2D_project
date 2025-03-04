@@ -9,8 +9,9 @@ public class MainUI : MonoBehaviour
     [SerializeField] private Slider healthSlider;
     [SerializeField] private Slider expSlider;
     [SerializeField] private Text timerText;
+    [SerializeField] private Text ManastoneFragmentCountText;
 
-    private float elapsedTime;
+    public float elapsedTime;
 
     void Start()
     {
@@ -34,6 +35,8 @@ public class MainUI : MonoBehaviour
         int minutes = Mathf.FloorToInt(elapsedTime / 60);
         int seconds = Mathf.FloorToInt(elapsedTime % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+        ManastoneFragmentCountText.text = $"{GameManager.GM.instansManaStoneFragment}";
     }
 
     private void SetVidible()

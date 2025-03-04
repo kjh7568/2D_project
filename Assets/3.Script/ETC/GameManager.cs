@@ -1,3 +1,5 @@
+//Hello World!
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject mainUI;
     [SerializeField] private GameObject levelUpUI;
+    [SerializeField] private GameObject gameOverUI;
 
     public int instansManaStoneFragment;
 
@@ -54,6 +57,13 @@ public class GameManager : MonoBehaviour
             mainUI.SetActive(false);
             canvas.SetActive(true);
             levelUpUI.SetActive(true);
+
+            Time.timeScale = 0f;
+        }
+        else if(playerState.hp <= 0)
+        {
+            gameOverUI.SetActive(true);
+            mainUI.SetActive(false);
 
             Time.timeScale = 0f;
         }

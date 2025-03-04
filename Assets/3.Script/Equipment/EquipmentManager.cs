@@ -26,7 +26,7 @@ namespace EquipmentNameSpace
         public float maxHpPercent { get; set; }
         public float movementSpeedFlat { get; set; }
         public float movementSpeedPercent { get; set; }
-
+        public int[] optionPool { get; set; }
     }
 }
 
@@ -43,12 +43,20 @@ public class EquipmentManager : MonoBehaviour
     public WeaponContainer EquippedWeapon;
     public ArmorContainer EquippedArmor;
     public BootsContainer EquippedBoots;
+
+    [SerializeField] private List<GameObject> skillArray;
+
+    public List<GameObject> usingSkill;
+
     //public BootsContainer EquippedBoots;
 
     private void Awake()
     {
+        //UI에서 삭제, 추가 등 할 수 있도록 변경
+        usingSkill.Add(skillArray[0]);
+
         //디버그용
-        manaStoneFragment = 3000;
+        manaStoneFragment = 500;
         //manaStoneFragment = 0;
 
         EquippedBoots = null;

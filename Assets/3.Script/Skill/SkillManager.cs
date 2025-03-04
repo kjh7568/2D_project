@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using SkillNameSpace;
 using System.IO; // 파일 입출력 사용
 using LitJson;
@@ -21,12 +22,20 @@ namespace SkillNameSpace
 //게임 시작할 때 스킬 추가하도록 하기
 public class SkillManager : MonoBehaviour
 {
+    [SerializeField] private Sprite[] gemImages;
+    public Dictionary<string, Sprite> gemDic;
+
     [SerializeField] private List<GameObject> skillArray;
     protected Dictionary<string, SkillData> skillDataDict;
     private bool[] isSkillUse;
+    public List<GameObject> usingSkill;
 
     private void Awake()
     {
+        usingSkill = EquipmentManager.instance.usingSkill;
+
+        SetGemDictionary();
+
         JsonMapper.RegisterExporter<float>((float value, JsonWriter writer) => writer.Write(value));
         JsonMapper.RegisterImporter<double, float>(input => (float)input);
 
@@ -59,6 +68,13 @@ public class SkillManager : MonoBehaviour
         }
     }
 
+
+    public void SetGemDictionary()
+    {
+        gemDic = new Dictionary<string, Sprite>();
+
+        gemDic.Add("FireBall", gemImages[0]);
+    }
     public IEnumerator SkillCoolDown_Co(SkillInfoInterface usedSkill)
     {
         while (true)

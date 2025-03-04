@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerState : MonoBehaviour
 {
@@ -78,13 +77,6 @@ public class PlayerState : MonoBehaviour
         Debug.Log($"스킬 범위: {skillExpansion}");
         Debug.Log($"스킬 지속 시간: {durationIncrease}");
         Debug.Log($"스킬 쿨타임 감소: {cooldownReduction}");
-    }
-    private void Update()
-    {
-        if (hp <= 0)
-        {
-            SceneManager.LoadScene("Lobby");
-        }
     }
 
     public void setExp(float exp)

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class LobbyEquipmentUI : MonoBehaviour
 {
-    [SerializeField] private GameObject mainPanel;
+    [SerializeField] private GameObject PreviousPanel;
     [SerializeField] private GameObject equipmentGachaPanel;
     [SerializeField] private GameObject equipmentEnhancementPanel;
     public void Exit()
     {
         gameObject.SetActive(false);
 
-        mainPanel.SetActive(true);
+        PreviousPanel.SetActive(true);
     }
 
     public void EquipmentGachaButton()

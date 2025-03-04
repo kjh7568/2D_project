@@ -24,5 +24,5 @@ public class BootsContainer : Equipment
     public float maxHpPercent { get; set; }
     public float movementSpeedFlat { get; set; }
     public float movementSpeedPercent { get; set; }
-
+    public int[] optionPool { get; set; } = { -1, -1, -1 };
 }
