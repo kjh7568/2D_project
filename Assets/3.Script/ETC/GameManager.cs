@@ -13,9 +13,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject mainUI;
     [SerializeField] private GameObject levelUpUI;
     [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private GameObject gemUI;
 
     public int instansManaStoneFragment;
 
+    public bool isOpenManaStoneWindow;
     private void Awake()
     {
         instansManaStoneFragment = 0;
@@ -27,11 +29,18 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        isOpenManaStoneWindow = false;
     }
 
     private void Update()
     {
         ConvertUI();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            isOpenManaStoneWindow = true;
+        }
     }
 
     private void OnDestroy()
@@ -63,6 +72,13 @@ public class GameManager : MonoBehaviour
         else if(playerState.hp <= 0)
         {
             gameOverUI.SetActive(true);
+            mainUI.SetActive(false);
+
+            Time.timeScale = 0f;
+        }
+        else if(isOpenManaStoneWindow)
+        {
+            gemUI.SetActive(true);
             mainUI.SetActive(false);
 
             Time.timeScale = 0f;

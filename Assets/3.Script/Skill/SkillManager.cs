@@ -52,7 +52,6 @@ public class SkillManager : MonoBehaviour
     }
     private void Update()
     {
-
         for (int i = 0; i < skillArray.Count; i++)
         {
             if (!isSkillUse[i])
@@ -71,6 +70,11 @@ public class SkillManager : MonoBehaviour
 
     public void SetGemDictionary()
     {
+        if (gemImages == null || gemImages.Length == 0)
+        {
+            return;
+        }
+
         gemDic = new Dictionary<string, Sprite>();
 
         gemDic.Add("FireBall", gemImages[0]);

@@ -998,29 +998,14 @@ GameObject:
   - component: {fileID: 363646950}
   - component: {fileID: 363646949}
   - component: {fileID: 363646948}
-  - component: {fileID: 363646947}
+  - component: {fileID: 363646952}
   m_Layer: 5
   m_Name: GemCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &363646947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 363646946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9831e82b6415b44f9fb31e02791febb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  survivalTimeText: {fileID: 0}
-  acquiredManaStoneFragmentsText: {fileID: 0}
-  elapsedTime: 0
+  m_IsActive: 0
 --- !u!114 &363646948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1106,6 +1091,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &363646952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363646946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62fc8addfed3dff438c72e42394673bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previousUI: {fileID: 1500476441}
+  objectPanel: {fileID: 489169840}
+  createManaStonePanel: {fileID: 564384489}
+  exitButton: {fileID: 0}
 --- !u!1 &367587998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1420,7 +1421,9 @@ MonoBehaviour:
   mainUI: {fileID: 1500476441}
   levelUpUI: {fileID: 1917141113}
   gameOverUI: {fileID: 1892781919}
+  gemUI: {fileID: 363646946}
   instansManaStoneFragment: 0
+  isOpenManaStoneWindow: 0
 --- !u!4 &508592866
 Transform:
   m_ObjectHideFlags: 0
@@ -1546,7 +1549,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &564384490
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1624,10 +1627,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c5c3a3213f8a8f4ea02f68d5324d34c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  previousPanel: {fileID: 489169840}
   gemButtonImages:
   - {fileID: 775791680}
   - {fileID: 958749713}
   - {fileID: 257062288}
+  GemName: {fileID: 1935295382}
+  GemSpec: {fileID: 1821335825}
+  ReplaceGemButton: {fileID: 952038284}
+  CreateGemButton: {fileID: 1660139971}
 --- !u!1 &578056527
 GameObject:
   m_ObjectHideFlags: 0
@@ -2130,7 +2138,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 795408549}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 363646952}
+        m_TargetAssemblyTypeName: gemUI, Assembly-CSharp
+        m_MethodName: CreateManaStoneButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &795408549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3921,7 +3941,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1481102311}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 564384493}
+        m_TargetAssemblyTypeName: CreateManaStoneUI, Assembly-CSharp
+        m_MethodName: Exitbutton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1481102311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14445,7 +14477,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2054002729}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 363646952}
+        m_TargetAssemblyTypeName: gemUI, Assembly-CSharp
+        m_MethodName: ExitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2054002729
 MonoBehaviour:
   m_ObjectHideFlags: 0
