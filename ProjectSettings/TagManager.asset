@@ -9,6 +9,8 @@ TagManager:
   - Area
   - EnemySpawner
   - Enemy
+  - Undefined
+  - Cold
   layers:
   - Default
   - TransparentFX

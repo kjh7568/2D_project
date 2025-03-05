@@ -44,24 +44,30 @@ public class EquipmentManager : MonoBehaviour
     public ArmorContainer EquippedArmor;
     public BootsContainer EquippedBoots;
 
-    [SerializeField] private List<GameObject> skillArray;
-
+    public List<GameObject> skillArray;
     public List<GameObject> usingSkill;
 
     //public BootsContainer EquippedBoots;
 
     private void Awake()
     {
+        //디버그용
+        EquippedWeapon = new WeaponContainer();
+        EquippedArmor = new ArmorContainer();
+        EquippedBoots = new BootsContainer();
+
         //UI에서 삭제, 추가 등 할 수 있도록 변경
-        usingSkill.Add(skillArray[0]);
+        //usingSkill.Add(skillArray[0]);
+        //usingSkill.Add(skillArray[1]);
+        usingSkill.Add(skillArray[2]);
 
         //디버그용
         manaStoneFragment = 500;
         //manaStoneFragment = 0;
 
-        EquippedBoots = null;
-        EquippedArmor = null;
-        EquippedWeapon = null;
+        //EquippedBoots = null;
+        //EquippedArmor = null;
+        //EquippedWeapon = null;
 
         if (instance == null)
         {

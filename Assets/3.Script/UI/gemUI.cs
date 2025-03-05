@@ -9,13 +9,6 @@ public class gemUI : MonoBehaviour
     [SerializeField] private GameObject objectPanel;
     [SerializeField] private GameObject createManaStonePanel;
 
-    [SerializeField] private Button exitButton;
-
-    private void OnEnable()
-    {
-        createManaStonePanel.SetActive(false);
-    }
-
     public void ExitButton()
     {
         Time.timeScale = 1f;
@@ -23,7 +16,6 @@ public class gemUI : MonoBehaviour
         previousUI.SetActive(true);
         gameObject.SetActive(false);
     }
-
     public void CreateManaStoneButton()
     {
         //GameManager.GM.isOpenManaStoneWindow = false;

@@ -23,11 +23,14 @@ public class FireBall : SkillManager, SkillInfoInterface
 
     public float initialSize;
 
+    public string skillComment { get; set; }
+
+
     Vector2 direction;
 
     void Start()
     {
-        Vector3 playerPos = GameManager.GM.playerController.transform.position;
+        Vector2 playerPos = GameManager.GM.playerController.transform.position;
 
         skillSize = transform.localScale;
 
@@ -46,7 +49,7 @@ public class FireBall : SkillManager, SkillInfoInterface
         {
             Debug.Log("적을 찾을 수 없어서 FireBall을 생성할 수 없습니다.");
         }
-        
+
         direction = (closestEnemyPos - (Vector2)transform.position).normalized;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 180f;
@@ -93,10 +96,11 @@ public class FireBall : SkillManager, SkillInfoInterface
 
     private void SetJsonData()
     {
-        setSkillCoolTime = base.skillDataDict[skillKey].skillCoolTime;
-        setSkillMovementSpeed = base.skillDataDict[skillKey].skillMovementSpeed;
-        setSkillDuration = base.skillDataDict[skillKey].skillDuration;
-        setSkillCoefficient = base.skillDataDict[skillKey].skillCoefficient;
+        GameObject.Find("SkillManager").TryGetComponent(out SkillManager skillManager);
+         setSkillCoolTime = skillManager.skillDataDict[skillKey].skillCoolTime;
+        setSkillMovementSpeed = skillManager.skillDataDict[skillKey].skillMovementSpeed;
+        setSkillDuration = skillManager.skillDataDict[skillKey].skillDuration;
+        setSkillCoefficient = skillManager.skillDataDict[skillKey].skillCoefficient;
     }
 
     private IEnumerator SkillDuration(float duration)

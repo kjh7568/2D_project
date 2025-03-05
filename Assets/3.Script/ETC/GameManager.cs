@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        Time.timeScale = 1f;
         isOpenManaStoneWindow = false;
     }
 

@@ -139,7 +139,8 @@ public class expansion : PassiveInterface
     {
         PlayerState playerState = GameManager.GM.playerState;
 
-        playerState.skillExpansion += 0.05f;
+        //playerState.skillExpansion += 0.05f;
+        playerState.skillExpansion += 1f;
 
         Debug.Log($"스킬 사이즈: {playerState.skillExpansion}");
     }

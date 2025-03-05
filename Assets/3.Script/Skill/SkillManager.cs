@@ -15,6 +15,7 @@ namespace SkillNameSpace
         float skillMovementSpeed { get; set; }
         float skillDuration { get; set; }
         float skillCoefficient { get; set; }
+        string skillComment { get; set; }
         public void UseSkill(float cooltime);
     }
 }
@@ -26,14 +27,19 @@ public class SkillManager : MonoBehaviour
     public Dictionary<string, Sprite> gemDic;
 
     [SerializeField] private List<GameObject> skillArray;
-    protected Dictionary<string, SkillData> skillDataDict;
+    public Dictionary<string, SkillData> skillDataDict;
     private bool[] isSkillUse;
     public List<GameObject> usingSkill;
 
     private void Awake()
     {
-        usingSkill = EquipmentManager.instance.usingSkill;
+        if (gemImages == null || gemImages.Length == 0)
+        {
+            return;
+        }
 
+        usingSkill = EquipmentManager.instance.usingSkill;
+        skillArray = EquipmentManager.instance.skillArray;
         SetGemDictionary();
 
         JsonMapper.RegisterExporter<float>((float value, JsonWriter writer) => writer.Write(value));
@@ -50,24 +56,18 @@ public class SkillManager : MonoBehaviour
             isSkillUse[i] = false;
         }
     }
-    private void Update()
+    private void Start()
     {
-        for (int i = 0; i < skillArray.Count; i++)
+        for (int i = 0; i < usingSkill.Count; i++)
         {
-            if (!isSkillUse[i])
-            {
-                if (Vector2.Distance(GameManager.GM.playerController.transform.position, GetClosestEnemy()) < 10f)
-                {
-                    isSkillUse[i] = true;
-                    skillArray[i].TryGetComponent(out SkillInfoInterface SI);
+            usingSkill[i].TryGetComponent(out SkillInfoInterface SI);
 
-                    StartCoroutine(SkillCoolDown_Co(SI));
-                }
-            }
+            StartCoroutine(SkillCoolDown_Co(SI));
         }
     }
-
-
+    private void Update()
+    {
+    }
     public void SetGemDictionary()
     {
         if (gemImages == null || gemImages.Length == 0)
@@ -78,14 +78,31 @@ public class SkillManager : MonoBehaviour
         gemDic = new Dictionary<string, Sprite>();
 
         gemDic.Add("FireBall", gemImages[0]);
+        gemDic.Add("FreezingPulse", gemImages[1]);
+        gemDic.Add("OrbOfStorms", gemImages[2]);
     }
     public IEnumerator SkillCoolDown_Co(SkillInfoInterface usedSkill)
     {
         while (true)
         {
-            usedSkill.UseSkill(skillDataDict[usedSkill.skillKey].skillCoolTime);
+            if (Vector2.Distance(GameManager.GM.playerController.transform.position, GetClosestEnemy()) < 10f)
+            {
+               usedSkill.UseSkill(skillDataDict[usedSkill.skillKey].skillCoolTime);
+            }
 
             yield return new WaitForSeconds(usedSkill.skillCoolTime);
+        }
+    }
+
+    public void ResetCoroutine()
+    {
+        StopAllCoroutines();
+
+        for (int i = 0; i < usingSkill.Count; i++)
+        {
+            usingSkill[i].TryGetComponent(out SkillInfoInterface SI);
+
+            StartCoroutine(SkillCoolDown_Co(SI));
         }
     }
     public Vector2 GetClosestEnemy()

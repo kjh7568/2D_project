@@ -6,8 +6,10 @@ using System;
 [Serializable]
 public class SkillData
 {
+    public string skillName;
     public float skillCoolTime;
     public float skillMovementSpeed;
     public float skillDuration;
     public float skillCoefficient;
+    public string skillComment;
 }
