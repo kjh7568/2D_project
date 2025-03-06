@@ -7,6 +7,7 @@ public class LobbyUI : MonoBehaviour
 {
     [SerializeField] private GameObject equipmentPanel;
     [SerializeField] private GameObject inventoryPanel;
+    [SerializeField] private GameObject ManaStonePanel;
 
     public void ClickEquipment()
     {
@@ -20,11 +21,17 @@ public class LobbyUI : MonoBehaviour
     }
     public void ClickStart()
     {
-        if (EquipmentManager.instance.EquippedWeapon != null&&
-            EquipmentManager.instance.EquippedArmor != null&&
-            EquipmentManager.instance.EquippedBoots != null)
+        EquipmentManager temp = EquipmentManager.instance;
+        if (temp.EquippedWeapon != null && temp.EquippedArmor != null &&
+           temp.EquippedBoots != null && temp.usingSkill != null)
         {
             SceneManager.LoadScene("MainGame");
         }
+    }
+    public void ManaStoneButton()
+    {
+        gameObject.SetActive(false);
+
+        ManaStonePanel.SetActive(true);
     }
 }

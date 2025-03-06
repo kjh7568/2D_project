@@ -9,6 +9,8 @@ public class GemListUI : MonoBehaviour
 
     [SerializeField] private Text gemNameText;
     [SerializeField] private Text gemSpecText;
+    [SerializeField] private Text createButtonText;
+    [SerializeField] private Text FragmentText;
 
     [SerializeField] private Button createButton;
 
@@ -16,6 +18,7 @@ public class GemListUI : MonoBehaviour
 
     private int idx;
     private int selectNum;
+    private int cost;
 
     private CreateManaStoneUI createManaStoneUI;
     private void Awake()
@@ -31,6 +34,8 @@ public class GemListUI : MonoBehaviour
             previousButtons[i].interactable = false;
         }
         createButton.interactable = false;
+
+        FragmentText.text = $": {GameManager.GM.instansManaStoneFragment}";
     }
     private void OnDisable()
     {
@@ -62,11 +67,6 @@ public class GemListUI : MonoBehaviour
 
         selectNum = num;
 
-        createButton.interactable = true;
-
-        gemSpecText.gameObject.SetActive(true);
-        gemNameText.gameObject.SetActive(true);
-
         string key = "";
 
         switch (num)
@@ -84,6 +84,33 @@ public class GemListUI : MonoBehaviour
                 break;
         }
 
+        cost = skillManager.skillDataDict[key].makeCost;
+
+        if (skillManager.usingSkill.Contains(EquipmentManager.instance.skillArray[selectNum]))
+        {
+            createButton.interactable = false;
+            createButtonText.text = "이미 장착 중입니다.";
+        }
+        else
+        {
+            createButtonText.text = $"제작(필요 파편: {cost})";
+            
+            if (GameManager.GM.instansManaStoneFragment >= cost)
+            {
+                createButton.interactable = true;
+            }
+            else
+            {
+                createButton.interactable = false;
+            }
+        }
+
+        if (!gemSpecText.gameObject.activeSelf)
+        {
+            gemSpecText.gameObject.SetActive(true);
+            gemNameText.gameObject.SetActive(true);
+        }
+
         gemNameText.text = skillManager.skillDataDict[key].skillName;
         gemSpecText.text = skillManager.skillDataDict[key].skillComment +
                               $"쿨타임: {skillManager.skillDataDict[key].skillCoolTime}초\n\n" +
@@ -92,12 +119,12 @@ public class GemListUI : MonoBehaviour
     }
     public void CreateGemButton()
     {
-        SkillManager skillManager;
-        GameObject.Find("SkillManager").TryGetComponent(out skillManager);
+        GameObject.Find("SkillManager").TryGetComponent(out SkillManager skillManager);
+
+        GameManager.GM.instansManaStoneFragment -= cost;
 
         try
         {
-            GameObject GO = skillManager.usingSkill[idx];
             skillManager.usingSkill[idx] = EquipmentManager.instance.skillArray[selectNum];
         }
         catch
@@ -107,6 +134,8 @@ public class GemListUI : MonoBehaviour
 
         createManaStoneUI.SetObject();
         skillManager.ResetCoroutine();
+
+        FragmentText.text = $": {GameManager.GM.instansManaStoneFragment}";
 
         gameObject.SetActive(false);
     }

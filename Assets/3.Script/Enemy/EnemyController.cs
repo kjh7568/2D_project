@@ -22,14 +22,8 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    // Update is called once per frame  
     void Update()
     {
-        //if (GameManager.GM.playerState.isGetReward)
-        //{
-        //    return;
-        //}
-
         Vector2 playerPos = player.transform.position;
         Vector2 enemyPos = transform.position;
 

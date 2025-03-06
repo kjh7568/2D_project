@@ -5,7 +5,8 @@
     "skillMovementSpeed": 6.0,
     "skillDuration": 3.0,
     "skillCoefficient": 0.3,
-    "skillComment": "가장 가까운 적에게 화염구를 발사해 \n화염 폭발을 일으킵니다.\n\n"
+    "skillComment": "가장 가까운 적에게 화염구를 발사해 \n화염 폭발을 일으킵니다.\n\n",
+    "makeCost": 100
   },
   "FlameExplosionEffect": {
     "skillName": "화염 폭발",
@@ -13,7 +14,8 @@
     "skillMovementSpeed": 0.0,
     "skillDuration": 0.5,
     "skillCoefficient": 0.3,
-    "skillComment": ""
+    "skillComment": "",
+    "makeCost": 0
   },
   "FreezingPulse": {
     "skillName": "동결 파동",
@@ -21,7 +23,8 @@
     "skillMovementSpeed": 15.0,
     "skillDuration": 0.5,
     "skillCoefficient": 0.15,
-    "skillComment": "가장 가까운 적에게 서리의 파동을 발사해 확률적으로 적을 얼리고 피해를 입힙니다.\n\n"
+    "skillComment": "가장 가까운 적에게 서리의 파동을 발사해 확률적으로 적을 얼리고 피해를 입힙니다.\n\n",
+    "makeCost": 100
   },
   "OrbOfStorms": {
     "skillName": "폭풍 보주",
@@ -29,6 +32,7 @@
     "skillMovementSpeed": 0.0,
     "skillDuration": 2.0,
     "skillCoefficient": 0.10,
-    "skillComment": "번개의 보주를 만들어 범위 내 적에게 피해를 입힙니다.\n\n"
+    "skillComment": "번개의 보주를 만들어 범위 내 적에게 피해를 입힙니다.\n\n",
+    "makeCost": 200
   }
 }

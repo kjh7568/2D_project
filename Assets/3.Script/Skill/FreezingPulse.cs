@@ -102,7 +102,7 @@ public class FreezingPulse : SkillManager, SkillInfoInterface
         skillMovementSpeed = setSkillMovementSpeed;
         skillDuration = setSkillDuration * playerState.durationIncrease;
         skillCoefficient = setSkillCoefficient;
-        //transform.localScale = skillSize * playerState.skillExpansion;
+        transform.localScale = skillSize * playerState.skillExpansion;
     }
     private void SetJsonData()
     {

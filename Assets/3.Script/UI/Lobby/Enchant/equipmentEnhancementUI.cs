@@ -420,7 +420,7 @@ public class RerollUI : MonoBehaviour
         switch (selectedItem.equipmentType)
         {
             case 1:
-                for (int i = 0; i < selectedItem.rarity; i++)
+                for (int i = 0; i < selectedItem.optionDescription.Count; i++)
                 {
                     if (!isLock[i])
                     {
@@ -433,7 +433,7 @@ public class RerollUI : MonoBehaviour
                 }
                 break;
             case 2:
-                for (int i = 0; i < selectedItem.rarity; i++)
+                for (int i = 0; i < selectedItem.optionDescription.Count; i++)
                 {
                     if (!isLock[i])
                     {
@@ -446,7 +446,7 @@ public class RerollUI : MonoBehaviour
                 }
                 break;
             case 3:
-                for (int i = 0; i < selectedItem.rarity; i++)
+                for (int i = 0; i < selectedItem.optionDescription.Count; i++)
                 {
                     if (!isLock[i])
                     {

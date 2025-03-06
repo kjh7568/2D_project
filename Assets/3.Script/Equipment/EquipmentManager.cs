@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EquipmentNameSpace;
+using LitJson;
 
 namespace EquipmentNameSpace
 {
@@ -47,7 +48,9 @@ public class EquipmentManager : MonoBehaviour
     public List<GameObject> skillArray;
     public List<GameObject> usingSkill;
 
-    //public BootsContainer EquippedBoots;
+    public Dictionary<string, SkillData> skillDataDict;
+
+    public bool[] isCreated;
 
     private void Awake()
     {
@@ -56,18 +59,15 @@ public class EquipmentManager : MonoBehaviour
         EquippedArmor = new ArmorContainer();
         EquippedBoots = new BootsContainer();
 
-        //UI에서 삭제, 추가 등 할 수 있도록 변경
-        //usingSkill.Add(skillArray[0]);
-        //usingSkill.Add(skillArray[1]);
-        usingSkill.Add(skillArray[2]);
+        //EquippedBoots = null;
+        //EquippedArmor = null;
+        //EquippedWeapon = null;
+
+        isCreated = new bool[3];
 
         //디버그용
         manaStoneFragment = 500;
         //manaStoneFragment = 0;
-
-        //EquippedBoots = null;
-        //EquippedArmor = null;
-        //EquippedWeapon = null;
 
         if (instance == null)
         {
@@ -77,6 +77,21 @@ public class EquipmentManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+
+        JsonMapper.RegisterExporter<float>((float value, JsonWriter writer) => writer.Write(value));
+        JsonMapper.RegisterImporter<double, float>(input => (float)input);
+
+        string skillJson = Resources.Load<TextAsset>("SkillData").text;
+
+        skillDataDict = JsonMapper.ToObject<Dictionary<string, SkillData>>(skillJson);
+    }
+
+    private void Start()
+    {
+        for (int i = 0; i < isCreated.Length; i++)
+        {
+            isCreated[i] = false;
         }
     }
 }

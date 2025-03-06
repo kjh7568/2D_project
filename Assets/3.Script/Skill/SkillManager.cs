@@ -40,14 +40,9 @@ public class SkillManager : MonoBehaviour
 
         usingSkill = EquipmentManager.instance.usingSkill;
         skillArray = EquipmentManager.instance.skillArray;
+        skillDataDict = EquipmentManager.instance.skillDataDict;
+
         SetGemDictionary();
-
-        JsonMapper.RegisterExporter<float>((float value, JsonWriter writer) => writer.Write(value));
-        JsonMapper.RegisterImporter<double, float>(input => (float)input);
-
-        string skillJson = Resources.Load<TextAsset>("SkillData").text;
-
-        skillDataDict = JsonMapper.ToObject<Dictionary<string, SkillData>>(skillJson);
 
         isSkillUse = new bool[skillArray.Count];
 

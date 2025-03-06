@@ -8,13 +8,15 @@ public class gemUI : MonoBehaviour
     [SerializeField] private GameObject previousUI;
     [SerializeField] private GameObject objectPanel;
     [SerializeField] private GameObject createManaStonePanel;
-
-    public void ExitButton()
+    private void Update()
     {
-        Time.timeScale = 1f;
-        GameManager.GM.isOpenManaStoneWindow = false;
-        previousUI.SetActive(true);
-        gameObject.SetActive(false);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Time.timeScale = 1f;
+            GameManager.GM.isOpenManaStoneWindow = false;
+            previousUI.SetActive(true);
+            gameObject.SetActive(false);
+        }
     }
     public void CreateManaStoneButton()
     {

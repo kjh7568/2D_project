@@ -12,4 +12,5 @@ public class SkillData
     public float skillDuration;
     public float skillCoefficient;
     public string skillComment;
+    public int makeCost;
 }

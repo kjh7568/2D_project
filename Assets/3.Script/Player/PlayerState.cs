@@ -62,8 +62,8 @@ public class PlayerState : MonoBehaviour
         level = 1;
         maxExp = setMaxExp;
         //디버그 용
-        exp = 18;
-        //exp = 0;
+        //exp = 18;
+        exp = 0;
 
         isGetReward = false;
         isLevelUp = false;

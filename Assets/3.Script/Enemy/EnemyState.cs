@@ -24,6 +24,8 @@ public class EnemyState : MonoBehaviour
         damage = setDamage;
         movementSpeed = setMovementSpeed;
         acquiredExp = setAcquiredExp;
+
+        spriteRenderer.color = Color.white;
     }
 
     public void SetHp(float dmg)

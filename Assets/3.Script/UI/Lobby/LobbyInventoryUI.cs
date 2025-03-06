@@ -18,6 +18,7 @@ public class LobbyInventoryUI : MonoBehaviour
 
     [SerializeField] private Button equipButton;
     [SerializeField] private Button shatterButton;
+    [SerializeField] private Button manaStoneButton;
 
     [SerializeField] private Sprite nullImage;
 
@@ -38,9 +39,6 @@ public class LobbyInventoryUI : MonoBehaviour
         itemName.gameObject.SetActive(false);
         itemRarity.gameObject.SetActive(false);
         itemStats.gameObject.SetActive(false);
-
-        equipButton.interactable = false;
-        shatterButton.interactable = false;
 
         List<Equipment> inventory = EquipmentManager.instance.inventory;
         for (int i = 0; i < inventory.Count; i++)
