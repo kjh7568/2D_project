@@ -8,6 +8,7 @@ public class gemUI : MonoBehaviour
     [SerializeField] private GameObject previousUI;
     [SerializeField] private GameObject objectPanel;
     [SerializeField] private GameObject createManaStonePanel;
+    [SerializeField] private GameObject engravingCreationPanel;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -20,8 +21,12 @@ public class gemUI : MonoBehaviour
     }
     public void CreateManaStoneButton()
     {
-        //GameManager.GM.isOpenManaStoneWindow = false;
         createManaStonePanel.SetActive(true);
+        objectPanel.SetActive(false);
+    }
+    public void EngraveGemButton()
+    {
+        engravingCreationPanel.SetActive(true);
         objectPanel.SetActive(false);
     }
 }
