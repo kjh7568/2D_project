@@ -35,7 +35,7 @@ public class EquipmentManager : MonoBehaviour
 {
     public static EquipmentManager instance { get; private set; }
 
-    public int equipmentType = 0;
+    public int equipmentType;
 
     public List<Equipment> inventory = new List<Equipment>();
 
@@ -54,7 +54,7 @@ public class EquipmentManager : MonoBehaviour
 
     private void Awake()
     {
-        //µð¹ö±×¿ë
+        //ï¿½ï¿½ï¿½ï¿½×¿ï¿½
         EquippedWeapon = new WeaponContainer();
         EquippedArmor = new ArmorContainer();
         EquippedBoots = new BootsContainer();
@@ -65,7 +65,7 @@ public class EquipmentManager : MonoBehaviour
 
         isCreated = new bool[3];
 
-        //µð¹ö±×¿ë
+        //ï¿½ï¿½ï¿½ï¿½×¿ï¿½
         manaStoneFragment = 500;
         //manaStoneFragment = 0;
 

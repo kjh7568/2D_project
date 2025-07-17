@@ -1,0 +1,53 @@
+@startuml
+top to bottom direction
+
+interface IAugmentation {
+    + augmentationName : string
+    + augmentationComment : string
+    + augmentationCount : int
+    + augmentationMaxCount : int
+    + Action() : void
+}
+
+class SetAugmentation {
+    - augmentationIcon : Sprite[9]
+    - icon : Image[3]
+    - augmentationName : Text[3]
+    - augmentationComment : Text[3]
+    - randomNumber : List<int>
+    - key : int[3]
+    - augmentations : List<IAugmentation>
+    
+    - Awake() : void
+    - OnEnable() : void
+    - SelectKey() : void
+    - SetUI() : void
+    - SelectAction(num : int) : void
+}
+
+class PlayerState
+
+class Health
+class Fortitude
+class Intelligence
+class Ferocity
+class Speed
+class Expansion
+class Accuracy
+class Focus
+class RapidCast
+
+IAugmentation <|.. Health
+IAugmentation <|.. Fortitude
+IAugmentation <|.. Intelligence
+IAugmentation <|.. Ferocity
+IAugmentation <|.. Speed
+IAugmentation <|.. Expansion
+IAugmentation <|.. Accuracy
+IAugmentation <|.. Focus
+IAugmentation <|.. RapidCast
+
+SetAugmentation --> IAugmentation : 사용
+SetAugmentation --> PlayerState : 적용
+
+@enduml

@@ -1,27 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using PassiveNameSpace;
 
-namespace PassiveNameSpace
+interface IAugmentation
 {
-    interface PassiveInterface
-    {
-        string passiveName { get; set; }
-        string passiveComment { get; set; }
-        int passiveCount { get; set; }
-        int passiveMaxCount { get; set; }
+    public string augmentationName { get; set; }
+    public string augmentationComment { get; set; }
+    public int augmentationCount { get; set; }
+    public int augmentationMaxCount { get; set; }
 
-        public void Action();
-    }
+    public void Action();
 }
 
-public class health : PassiveInterface
+public class Health : IAugmentation
 {
-    public string passiveName { get; set; } = "Ã¼·Â";
-    public string passiveComment { get; set; } = "ÃÖ´ë Ã¼·ÂÀÇ ¼öÄ¡°¡ Áõ°¡ÇÕ´Ï´Ù.";
-    public int passiveCount { get; set; } = 5;
-    public int passiveMaxCount { get; set; } = 5;
+    public string augmentationName { get; set; } = "Ã¼ï¿½ï¿½";
+    public string augmentationComment { get; set; } = "ï¿½Ö´ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.";
+    public int augmentationCount { get; set; } = 5;
+    public int augmentationMaxCount { get; set; } = 5;
 
     public void Action()
     {
@@ -32,19 +26,20 @@ public class health : PassiveInterface
         playerState.UpdateMaxHp();
         playerState.setHp(20);
 
-        passiveCount++;
+        augmentationCount++;
 
-        Debug.Log($"ÇöÀç Ã¼·Â: {playerState.hp} / {playerState.maxHp}");
-        Debug.Log($"ÃÖ´ë Ã¼·Â ÇÃ·§: {playerState.maxHpFlat}");
-        Debug.Log($"ÃÖ´ë Ã¼·Â Áõ°¡: {playerState.maxHpPercent}");
+        Debug.Log($"ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½: {playerState.hp} / {playerState.maxHp}");
+        Debug.Log($"ï¿½Ö´ï¿½ Ã¼ï¿½ï¿½ ï¿½Ã·ï¿½: {playerState.maxHpFlat}");
+        Debug.Log($"ï¿½Ö´ï¿½ Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: {playerState.maxHpPercent}");
     }
 }
-public class fortitude : PassiveInterface
+
+public class Fortitude : IAugmentation
 {
-    public string passiveName { get; set; } = "°­ÀÎÇÔ";
-    public string passiveComment { get; set; } = "ÃÖ´ë Ã¼·ÂÀÌ 10% Áõ°¡ÇÕ´Ï´Ù  .";
-    public int passiveCount { get; set; } = 0;
-    public int passiveMaxCount { get; set; } = 5;
+    public string augmentationName { get; set; } = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
+    public string augmentationComment { get; set; } = "ï¿½Ö´ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ 10% ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½  .";
+    public int augmentationCount { get; set; }
+    public int augmentationMaxCount { get; set; } = 5;
 
     public void Action()
     {
@@ -55,19 +50,19 @@ public class fortitude : PassiveInterface
         playerState.UpdateMaxHp();
         playerState.setHp(playerState.maxHpFlat * 0.1f);
 
-        passiveCount++;
+        augmentationCount++;
 
-        Debug.Log($"ÇöÀç Ã¼·Â: {playerState.hp} / {playerState.maxHp}");
-        Debug.Log($"ÃÖ´ë Ã¼·Â ÇÃ·§: {playerState.maxHpFlat}");
-        Debug.Log($"ÃÖ´ë Ã¼·Â Áõ°¡: {playerState.maxHpPercent}");
+        Debug.Log($"ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½: {playerState.hp} / {playerState.maxHp}");
+        Debug.Log($"ï¿½Ö´ï¿½ Ã¼ï¿½ï¿½ ï¿½Ã·ï¿½: {playerState.maxHpFlat}");
+        Debug.Log($"ï¿½Ö´ï¿½ Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: {playerState.maxHpPercent}");
     }
 }
-public class intelligence : PassiveInterface
+public class Intelligence : IAugmentation
 {
-    public string passiveName { get; set; } = "Áö´É";
-    public string passiveComment { get; set; } = "ÁÖ¹®·ÂÀÌ 5% Áõ°¡ÇÕ´Ï´Ù";
-    public int passiveCount { get; set; } = 0;
-    public int passiveMaxCount { get; set; } = 5;
+    public string augmentationName { get; set; } = "ï¿½ï¿½ï¿½ï¿½";
+    public string augmentationComment { get; set; } = "ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ 5% ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½";
+    public int augmentationCount { get; set; }
+    public int augmentationMaxCount { get; set; } = 5;
 
     public void Action()
     {
@@ -77,19 +72,19 @@ public class intelligence : PassiveInterface
 
         playerState.UpdateSpellPower();
 
-        passiveCount++;
+        augmentationCount++;
 
-        Debug.Log($"ÇöÀç ÁÖ¹®·Â: {playerState.spellPower}");
-        Debug.Log($"ÁÖ¹®·Â ÇÃ·§: {playerState.spellPowerFlat}");
-        Debug.Log($"ÁÖ¹®·Â Áõ°¡: {playerState.spellPowerPercent}");
+        Debug.Log($"ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¹ï¿½ï¿½ï¿½: {playerState.spellPower}");
+        Debug.Log($"ï¿½Ö¹ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½: {playerState.spellPowerFlat}");
+        Debug.Log($"ï¿½Ö¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: {playerState.spellPowerPercent}");
     }
 }
-public class ferocity : PassiveInterface
+public class Ferocity : IAugmentation
 {
-    public string passiveName { get; set; } = "Æ÷¾ÇÇÔ";
-    public string passiveComment { get; set; } = "°ø°Ý·ÂÀÌ 5% Áõ°¡ÇÕ´Ï´Ù";
-    public int passiveCount { get; set; } = 0;
-    public int passiveMaxCount { get; set; } = 5;
+    public string augmentationName { get; set; } = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
+    public string augmentationComment { get; set; } = "ï¿½ï¿½ï¿½Ý·ï¿½ï¿½ï¿½ 5% ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½";
+    public int augmentationCount { get; set; }
+    public int augmentationMaxCount { get; set; } = 5;
 
     public void Action()
     {
@@ -99,19 +94,19 @@ public class ferocity : PassiveInterface
 
         playerState.UpdateAttackPower();
 
-        passiveCount++;
+        augmentationCount++;
 
-        Debug.Log($"ÇöÀç ÁÖ¹®·Â: {playerState.attackPower}");
-        Debug.Log($"ÁÖ¹®·Â ÇÃ·§: {playerState.attackPowerFlat}");
-        Debug.Log($"ÁÖ¹®·Â Áõ°¡: {playerState.attackPowerPercent}");
+        Debug.Log($"ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¹ï¿½ï¿½ï¿½: {playerState.attackPower}");
+        Debug.Log($"ï¿½Ö¹ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½: {playerState.attackPowerFlat}");
+        Debug.Log($"ï¿½Ö¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: {playerState.attackPowerPercent}");
     }
 }
-public class speed : PassiveInterface
+public class Speed : IAugmentation
 {
-    public string passiveName { get; set; } = "½Å¼Ó";
-    public string passiveComment { get; set; } = "ÀÌµ¿ ¼Óµµ°¡ 5% Áõ°¡ÇÕ´Ï´Ù.";
-    public int passiveCount { get; set; } = 0;
-    public int passiveMaxCount { get; set; } = 5;
+    public string augmentationName { get; set; } = "ï¿½Å¼ï¿½";
+    public string augmentationComment { get; set; } = "ï¿½Ìµï¿½ ï¿½Óµï¿½ï¿½ï¿½ 5% ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.";
+    public int augmentationCount { get; set; }
+    public int augmentationMaxCount { get; set; } = 5;
 
     public void Action()
     {
@@ -121,19 +116,19 @@ public class speed : PassiveInterface
 
         playerState.UpdateMovementSpeed();
 
-        passiveCount++;
+        augmentationCount++;
 
-        Debug.Log($"ÇöÀç ÀÌµ¿¼Óµµ: {playerState.movementSpeed}");
-        Debug.Log($"ÀÌµ¿¼Óµµ ÇÃ·§: {playerState.movementSpeedFlat}");
-        Debug.Log($"ÀÌµ¿¼Óµµ Áõ°¡: {playerState.movementSpeedPercent}");
+        Debug.Log($"ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Óµï¿½: {playerState.movementSpeed}");
+        Debug.Log($"ï¿½Ìµï¿½ï¿½Óµï¿½ ï¿½Ã·ï¿½: {playerState.movementSpeedFlat}");
+        Debug.Log($"ï¿½Ìµï¿½ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½: {playerState.movementSpeedPercent}");
     }
 }
-public class expansion : PassiveInterface
+public class Expansion : IAugmentation
 {
-    public string passiveName { get; set; } = "ÆØÃ¢";
-    public string passiveComment { get; set; } = "°ø°Ý ¶Ç´Â ¸¶¹ýÀÇ Å©±â°¡ 5% Ä¿Áý´Ï´Ù.";
-    public int passiveCount { get; set; } = 0;
-    public int passiveMaxCount { get; set; } = 5;
+    public string augmentationName { get; set; } = "ï¿½ï¿½Ã¢";
+    public string augmentationComment { get; set; } = "ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½â°¡ 5% Ä¿ï¿½ï¿½ï¿½Ï´ï¿½.";
+    public int augmentationCount { get; set; } = 0;
+    public int augmentationMaxCount { get; set; } = 5;
 
     public void Action()
     {
@@ -141,15 +136,15 @@ public class expansion : PassiveInterface
 
         playerState.skillExpansion += 0.05f;
 
-        Debug.Log($"½ºÅ³ »çÀÌÁî: {playerState.skillExpansion}");
+        Debug.Log($"ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: {playerState.skillExpansion}");
     }
 }
-public class accuracy : PassiveInterface
+public class Accuracy : IAugmentation
 {
-    public string passiveName { get; set; } = "Á¤È®¼º";
-    public string passiveComment { get; set; } = "Ä¡¸íÅ¸ È®·üÀÌ 5% Áõ°¡ÇÕ´Ï´Ù.";
-    public int passiveCount { get; set; } = 0;
-    public int passiveMaxCount { get; set; } = 5;
+    public string augmentationName { get; set; } = "ï¿½ï¿½È®ï¿½ï¿½";
+    public string augmentationComment { get; set; } = "Ä¡ï¿½ï¿½Å¸ È®ï¿½ï¿½ï¿½ï¿½ 5% ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.";
+    public int augmentationCount { get; set; } = 0;
+    public int augmentationMaxCount { get; set; } = 5;
 
     public void Action()
     {
@@ -157,15 +152,15 @@ public class accuracy : PassiveInterface
 
         playerState.criticalChance += 5f;
 
-        Debug.Log($"Ä¡¸íÅ¸ È®·ü: {playerState.criticalChance}");
+        Debug.Log($"Ä¡ï¿½ï¿½Å¸ È®ï¿½ï¿½: {playerState.criticalChance}");
     }
 }
-public class focus : PassiveInterface
+public class Focus : IAugmentation
 {
-    public string passiveName { get; set; } = "ÁýÁß";
-    public string passiveComment { get; set; } = "½ºÅ³ÀÇ Áö¼Ó ½Ã°£ÀÌ 5% Áõ°¡ÇÕ´Ï´Ù.";
-    public int passiveCount { get; set; } = 0;
-    public int passiveMaxCount { get; set; } = 5;
+    public string augmentationName { get; set; } = "ï¿½ï¿½ï¿½ï¿½";
+    public string augmentationComment { get; set; } = "ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ 5% ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.";
+    public int augmentationCount { get; set; } = 0;
+    public int augmentationMaxCount { get; set; } = 5;
 
     public void Action()
     {
@@ -173,15 +168,15 @@ public class focus : PassiveInterface
 
         playerState.durationIncrease += 0.05f;
 
-        Debug.Log($"Áö¼Ó½Ã°£ Áõ°¡·®: {playerState.durationIncrease }");
+        Debug.Log($"ï¿½ï¿½ï¿½Ó½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: {playerState.durationIncrease }");
     }
 }
-public class rapidCast : PassiveInterface
+public class RapidCast : IAugmentation
 {
-    public string passiveName { get; set; } = "°í¼Ó ½ÃÀü";
-    public string passiveComment { get; set; } = "½ÃÀü ¼Óµµ°¡ 5% Áõ°¡ÇÕ´Ï´Ù.";
-    public int passiveCount { get; set; } = 0;
-    public int passiveMaxCount { get; set; } = 5;
+    public string augmentationName { get; set; } = "ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½";
+    public string augmentationComment { get; set; } = "ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ 5% ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.";
+    public int augmentationCount { get; set; } = 0;
+    public int augmentationMaxCount { get; set; } = 5;
 
     public void Action()
     {
@@ -189,6 +184,6 @@ public class rapidCast : PassiveInterface
 
         playerState.cooldownReduction += 0.05f;
 
-        Debug.Log($"ÄðÅ¸ÀÓ °¨¼Ò·®: {playerState.cooldownReduction }");
+        Debug.Log($"ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ò·ï¿½: {playerState.cooldownReduction }");
     }
 }
